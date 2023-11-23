@@ -18,20 +18,25 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Get all products => /api/v1/products?keyword=value
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-
-  const resPerPage = 8; //tối đa 8 sản phẩm trong 1 trang (có thể tùy chỉnh)
+  const resPerPage = 4; //tối đa 4 sản phẩm trong 1 trang (có thể tùy chỉnh)
   const productsCount = await Product.countDocuments();
 
   const apiFeatures = new APIFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resPerPage);
+    .filter();
 
-  const products = await apiFeatures.query;
+  let products = await apiFeatures.query;
+  let filteredProductsCount = products.length;
+
+  apiFeatures.pagination(resPerPage);
+
+  products = await apiFeatures.query.clone();
 
   res.status(200).json({
     success: true,
     productsCount,
+    resPerPage,
+    filteredProductsCount,
     products,
   });
 });

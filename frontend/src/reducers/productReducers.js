@@ -8,12 +8,20 @@ import {
   CLEAR_ERRORS,
 } from '../constants/productConstants';
 
-export const productsReducer = (state = { products: [] }, action) => {
+const initialState = {
+  loading: false,
+  products: [],
+  productsCount: 0, // Initialize productsCount
+  resPerPage: 4, // Initialize resPerPage
+  error: null,
+};
+
+export const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_PRODUCTS_REQUEST:
       return {
+        ...state,
         loading: true,
-        products: [],
       };
 
     case ALL_PRODUCTS_SUCCESS:
@@ -21,10 +29,14 @@ export const productsReducer = (state = { products: [] }, action) => {
         loading: false,
         products: action.payload.products,
         productsCount: action.payload.productsCount,
+        resPerPage: action.payload.resPerPage,
+        filteredProductsCount: action.payload.filteredProductsCount,
+        error: null,
       };
 
     case ALL_PRODUCTS_FAIL:
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };
@@ -40,35 +52,33 @@ export const productsReducer = (state = { products: [] }, action) => {
   }
 };
 
-
 export const productDetailsReducer = (state = { product: {} }, action) => {
   switch (action.type) {
+    case PRODUCT_DETAILS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
 
-      case PRODUCT_DETAILS_REQUEST:
-          return {
-              ...state,
-              loading: true
-          }
+    case PRODUCT_DETAILS_SUCCESS:
+      return {
+        loading: false,
+        product: action.payload,
+      };
 
-      case PRODUCT_DETAILS_SUCCESS:
-          return {
-              loading: false,
-              product: action.payload
-          }
+    case PRODUCT_DETAILS_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
 
-      case PRODUCT_DETAILS_FAIL:
-          return {
-              ...state,
-              error: action.payload
-          }
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
 
-      case CLEAR_ERRORS:
-          return {
-              ...state,
-              error: null
-          }
-
-      default:
-          return state
+    default:
+      return state;
   }
-}
+};
