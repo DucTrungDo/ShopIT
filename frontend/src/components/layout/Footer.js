@@ -4,9 +4,7 @@ const Footer = () => {
   return (
     <Fragment>
       <footer className='py-1'>
-        <p className='text-center mt-1'>
-          Shopping Cart - 2019-2020, All Rights Reserved
-        </p>
+        <p className='text-center mt-1'>Do Trung Duc - 20110459 - SPKT - K20</p>
       </footer>
     </Fragment>
   );

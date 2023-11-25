@@ -11,9 +11,10 @@ import {
 const initialState = {
   loading: false,
   products: [],
+  error: null,
   productsCount: 0, // Initialize productsCount
   resPerPage: 4, // Initialize resPerPage
-  error: null,
+  filteredProductsCount: 0,
 };
 
 export const productsReducer = (state = initialState, action) => {
