@@ -16,7 +16,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([1, 1000]);
+  const [price, setPrice] = useState([1, 99999]);
   const [category, setCategory] = useState('');
   const [rating, setRating] = useState(0);
 
@@ -150,7 +150,6 @@ const Home = () => {
                   </div>
                 </Fragment>
               ) : (
-                products &&
                 products.map((product) => (
                   <Product key={product._id} product={product} col={3} />
                 ))

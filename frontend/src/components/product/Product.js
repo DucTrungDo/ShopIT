@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Product({ product, col }) {
+const Product = ({ product, col }) => {
   return (
     <div className={`col-sm-12 col-md-6 col-lg-${col} my-3`}>
       <div className='card p-3 rounded'>
@@ -20,13 +20,17 @@ function Product({ product, col }) {
             <span id='no_of_reviews'>({product.numOfReviews} Reviews)</span>
           </div>
           <p className='card-text'>${product.price}</p>
-          <Link to={`/product/${product._id}`} id='view_btn' className='btn btn-block'>
+          <Link
+            to={`/product/${product._id}`}
+            id='view_btn'
+            className='btn btn-block'
+          >
             View Details
           </Link>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Product;

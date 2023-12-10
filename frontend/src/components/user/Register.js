@@ -34,7 +34,7 @@ const Register = () => {
       navigate('/');
     }
 
-    if (error) {
+    if (error && error !== 'Login first to access this resource.') {
       alert.error(error);
       dispatch(clearErrors());
     }

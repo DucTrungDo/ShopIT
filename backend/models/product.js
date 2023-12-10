@@ -5,17 +5,17 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please enter product name'],
     trim: true,
-    maxLength: [100, 'Product name cannot exceed 100 characters'],
+    maxLength: [300, 'Product name cannot exceed 300 characters'],
   },
   price: {
     type: Number,
     required: [true, 'Please enter product price'],
-    maxLength: [10, 'Product price cannot exceed 5 characters'],
+    maxLength: [5, 'Product price cannot exceed 5 characters'],
     default: 0.0,
   },
   description: {
     type: String,
-    required: [true, 'Please enter product descriptions'],
+    required: [true, 'Please enter product description'],
   },
   ratings: {
     type: Number,
@@ -47,7 +47,7 @@ const productSchema = new mongoose.Schema({
         'Books',
         'Clothes/Shoes',
         'Beauty/Health',
-        'Sport',
+        'Sports',
         'Outdoor',
         'Home',
       ],
@@ -80,7 +80,7 @@ const productSchema = new mongoose.Schema({
         required: true,
       },
       rating: {
-        type: String,
+        type: Number,
         required: true,
       },
       comment: {
